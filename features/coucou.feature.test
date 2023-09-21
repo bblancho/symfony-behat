@@ -1,0 +1,51 @@
+Feature: User
+    I need to be able to retrieve, create, update and delete users trough the API.
+
+    # "@createSchema" creates a temporary SQLite database for testing the API
+    @createSchema
+    Scenario: Create a user
+        When I send a "POST" request to "/users" with body:
+            """
+            {"email": "test@example.com", "name": "Tester"}
+            """
+        Then the response status code should be 201
+        And the response should be in JSON
+        And the header "Content-Type" should be equal to "application/ld+json"
+        And the JSON should be equal to:
+            """
+            {
+                "@context": "/contexts/User",
+                "@id": "/users/1",
+                "@type": "http://schema.org/Person",
+                "email": "test@example.com",
+                "memberOf": null,
+                "name": "Tester"
+            }
+            """
+
+    Scenario: Create a user with invalid email
+        When I send a "POST" request to "/users" with body:
+            """
+            {"email": "test@example", "name": "Tester"}
+            """
+        Then the response status code should be 400
+        And the response should be in JSON
+        And the header "Content-Type" should be equal to "application/ld+json"
+        And the JSON node "root->hydra:description" should contain "email: This value is not a valid email address."
+
+    Scenario: Get single user
+        When I send a "GET" request to "/users/1"
+        Then the response status code should be 200
+        And the response should be in JSON
+        And the header "Content-Type" should be equal to "application/ld+json"
+        And the JSON should be equal to:
+            """
+            {
+                "@context": "/contexts/User",
+                "@id": "/users/1",
+                "@type": "http://schema.org/Person",
+                "email": "test@example.com",
+                "memberOf": null,
+                "name": "Tester"
+            }
+            """
