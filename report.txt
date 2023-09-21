@@ -1,0 +1,51 @@
+[1mFeature:[22m Authentification
+    Test de connexion à son compte
+
+  [1mScenario:[22m Login in successfully to my website [30m# features\auth.feature:4[39m
+    [33mWhen I am on "/login"[39m
+    [33mAnd I fill in "email" with "my@email.com"[39m
+    [33mAnd I fill in "password" with "my_password"[39m
+    [33mAnd I press "Login"[39m
+    [33mThen I should see "Successfully logged in"[39m
+
+  [1mScenario:[22m Attempt to login with invalid credentials [30m# features\auth.feature:11[39m
+    [33mWhen I am on "/login"[39m
+    [33mAnd I fill in "email" with "my@email.com"[39m
+    [33mAnd I fill in "password" with "not_my_password"[39m
+    [33mAnd I press "Login"[39m
+    [33mThen I should see "Login failed"[39m
+
+[1mFeature:[22m Authentification
+    Test de connexion à son compte
+
+  [1mScenario:[22m Login in successfully to my website                 [30m# features\auth2.feature:5[39m
+    [33mGiven I login as "my@email.com" with password "my_password"[39m
+    [33mThen I should see "Successfully logged in"[39m
+
+  [1mScenario:[22m Attempt to login with invalid credentials               [30m# features\auth2.feature:9[39m
+    [33mGiven I login as "my@email.com" with password "not_my_password"[39m
+    [33mThen I should see "Login failed"[39m
+
+[1mFeature:[22m Basket
+    Permet de vérifier que le panier fonctionne
+
+  [1mScenario:[22m An empty basket      [30m# features\basket.feature:4[39m
+    [31mGiven An empty basket[39m        [30m# BasketContext::anEmptyBasket()[39m
+[31m      8192: Creation of dynamic property BasketContext::$basket is deprecated in features\bootstrap\BasketContext.php line 21[39m
+    [36mThen the basket price is [39m[36;1m0[39;22m[36m $[39m [30m# BasketContext::theBasketPriceIs()[39m
+
+  [1mScenario:[22m Multiple products are added to the basket [30m# features\basket.feature:8[39m
+    [31mGiven An empty basket[39m                             [30m# BasketContext::anEmptyBasket()[39m
+[31m      8192: Creation of dynamic property BasketContext::$basket is deprecated in features\bootstrap\BasketContext.php line 21[39m
+    [36mAnd A product costing [39m[36;1m5[39;22m[36m $ id added to the basket[39m  [30m# BasketContext::aProductCostingIdAddedToTheBasket()[39m
+    [36mAnd A product costing [39m[36;1m15[39;22m[36m $ id added to the basket[39m [30m# BasketContext::aProductCostingIdAddedToTheBasket()[39m
+    [36mThen the basket price is [39m[36;1m15[39;22m[36m $[39m                     [30m# BasketContext::theBasketPriceIs()[39m
+
+--- [31mScénarios échoués:[39m
+
+    [31mfeatures\basket.feature:4[39m
+    [31mfeatures\basket.feature:8[39m
+
+6 scénarios ([31m2 échecs[39m, [33m4 indéfinis[39m)
+20 étapes ([31m2 échecs[39m, [33m14 indéfinis[39m, [36m4 ignorés[39m)
+0m1.03s (9.86Mb)
