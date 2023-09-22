@@ -1,17 +1,20 @@
 default:
+    translation:
+        locale: en 
+
     suites:
         default:
-            contexts:
-                - FeatureContext
-                - BasketContext
+            contexts: [ FeatureContext, WebContext]
 
     extensions:
+        DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
         Behat\MinkExtension:
-            base_url: "http://localhost:8000/"
-            selenium2: ~
-            default_session: symfony
-            sessions:
-                default:
-                    symfony: ~
-        FriendsOfBehat\SymfonyExtension:
-            bootstrap: tests/bootstrap.php
+            base_url: "https://google.fr/" # Replace with your site's URL
+            browser_name: chrome
+            default_session: selenium2
+            selenium2: 
+                wd_host: 'http://192.168.20.30:4444/'
+                capabilities:
+                    version: ''
+            javascript_session: selenium2    
+        

@@ -11,7 +11,7 @@ use Behat\Behat\Tester\Exception\PendingException;
 /**
  * Defines application features from the specific context.
  */
-class WebContext extends MinkContext implements Context
+class WebContext extends MinkContext
 {
 
    
